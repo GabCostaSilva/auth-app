@@ -1,0 +1,32 @@
+<%- include('partials/header'); -%>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <form action="/login" method="POST">
+        <div class="">
+          <label for="username"
+            >Username
+            <input type="text" name="username" id="username" required />
+          </label>
+        </div>
+        <div>
+          <label for="password">
+            Password
+            <input type="password" name="password" id="password" required />
+          </label>
+        </div>
+        <div class="d-flex w-25">
+          <button class="btn btn-primary ">Login</button>
+          <a href="/register"><button class="btn btn-info ml-2">Register</button></a>
+        </div>
+      </form>
+      <% if(message.error) { %>
+          <div class="d-flex p-2 alert alert-warning"><%= message.error %></div>
+        <% } %>
+        <% if(message.success) { %>
+          <div class="d-flex p-2 alert alert-success"><%= message.success %></div>
+        <% } %>
+    </div>
+  </div>
+</div>
+<%- include('partials/footer'); -%>
