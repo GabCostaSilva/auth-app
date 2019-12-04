@@ -5,7 +5,6 @@ Just a simple authentication/user session app using NodeJS and some seasoning li
 - Express JS
 - Sequelize
 - Sqlite
-- JWT
 
 ## Running
     - yarn
