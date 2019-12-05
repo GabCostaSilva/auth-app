@@ -10,8 +10,6 @@ const cookieParser = require("cookie-parser");
 const app = express();
 const router = express.Router();
 
-app.use(passport.initialize());
-app.use(passport.session());
 app.set("views", "./views");
 app.set("view engine", "ejs");
 app.use(cookieParser("monster hommus"));
@@ -25,8 +23,12 @@ app.use(
     secret: "monster hommus"
   })
 );
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(flash());
 app.use(express.static(`${__dirname}/public`));
+
+passport.serializeUser((user, done) => done(null, user.id));
 
 passport.use(
   new LocalStrategy((username, password, done) => {
@@ -44,11 +46,16 @@ passport.use(
   })
 );
 
+passport.deserializeUser(async (id, done) => {
+  const user = await User.findByPk(id);
+  done(null, user);
+});
+
 router.get("/", (req, res) => res.redirect("/login"));
 
-router.get("/user", (req, res) =>
-  res.render(path.join(`${__dirname}/views/home`), req.user)
-);
+router.get("/user", (req, res) => {
+  res.render(path.join(`${__dirname}/views/home`), {user: req.user});
+});
 
 router.get("/login", (req, res) => {
   res.render(path.join(`${__dirname}/views/login`), {
