@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 app.use(
   session({
     cookie: { maxAge: 60000 },
-    saveUninitialized: true,
+    saveUninitialized: false,
     resave: true,
     secret: "monster hommus"
   })
