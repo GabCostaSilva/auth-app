@@ -1,10 +1,14 @@
-<%- include('partials/header'); -%>
+<%- include('partials/header'); -%> <%- include('partials/navbar'); -%>
+
 <div class="container">
-    <div class="row">
-        <div class="col">
-            <div class="text-info">Hi <%= user.username %></div>
-        </div>
+  <div class="row">
+    <div class="col">
+      <% if(user) { %>
+      <div class="text-info">Hi <%= user.username %></div>
+      <% } else {%>
+      <div class="text-info">User not found</div>
+      <% } %>
     </div>
+  </div>
 </div>
 <%- include('partials/footer'); -%>
-
