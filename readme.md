@@ -1,10 +1,5 @@
 # Auth App
-Just a simple authentication/user session app using NodeJS and some seasoning like
-
-- Passport JS
-- Express JS
-- Sequelize
-- Sqlite
+Just a simple authentication/user session app using NodeJS and Passport JS plus some seasoning.
 
 ## Running
     - yarn
