@@ -6,20 +6,19 @@ const flash = require("connect-flash");
 const session = require("express-session");
 const LocalStrategy = require("passport-local").Strategy;
 const bodyParser = require("body-parser");
-const cookieParser = require("cookie-parser");
+
 const app = express();
 const router = express.Router();
 
 app.set("views", "./views");
 app.set("view engine", "ejs");
-app.use(cookieParser("monster hommus"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(
   session({
     cookie: { maxAge: 60000 },
     saveUninitialized: false,
-    resave: true,
+    resave: false,
     secret: "monster hommus"
   })
 );
